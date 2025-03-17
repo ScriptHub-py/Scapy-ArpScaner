@@ -1,17 +1,17 @@
-import scapy.all as scapy
-
-ip_range = f'{scapy.conf.route.route("0.0.0.0")[2]}/24'
-
-def scan():
-	arp_request = scapy.ARP(pdst=ip_range)
-	ether = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")  # Херачим общим говном чтобы все знали
-	packet = ether / arp_request
-
-	ans = scapy.srp(packet, timeout=3, verbose=False)[0]
-	result = []
-	for sent, received in ans:
-		result.append([received.psrc, received.hwsrc])
-	return result
-
-for i,i2 in scan():
-	print(i,i2)
+import scapy.all as scapy\n
+\n
+ip_range = f'{scapy.conf.route.route("0.0.0.0")[2]}/24'\n
+\n
+def scan():\n
+	arp_request = scapy.ARP(pdst=ip_range)\n
+	ether = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")\n
+	packet = ether / arp_request\n
+\n
+	ans = scapy.srp(packet, timeout=3, verbose=False)[0]\n
+	result = []\n
+	for sent, received in ans:\n
+		result.append([received.psrc, received.hwsrc])\n
+	return result\n
+\n
+for i,i2 in scan():\n
+	print(i,i2)\n
