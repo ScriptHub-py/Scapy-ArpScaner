@@ -1,5 +1,9 @@
 import scapy.all as scapy
 
+wifiadapter = "adapter_name.wifi"
+if wifiadapter != "adapter_name.wifi":
+	scapy.conf.iface = wifiadapter
+
 ip_range = f'{scapy.conf.route.route("0.0.0.0")[2]}/24'
 
 def scan():
